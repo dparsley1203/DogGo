@@ -174,13 +174,13 @@ namespace DogGo.Repositories
                 {
                     cmd.CommandText = @"INSERT INTO Dog (Name, OwnerId, Breed, Notes, ImageUrl)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@name, @ownerId, @breed, @notes, @imageUrl";
+                                        VALUES (@name, @ownerId, @breed, @notes, @imageUrl)";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
-                    cmd.Parameters.AddWithValue("@owerId", dog.OwnerId);
+                    cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes);
-                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl);
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? "NA");
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? "NA");
 
                     int id = (int)cmd.ExecuteScalar();
 
@@ -207,10 +207,11 @@ namespace DogGo.Repositories
                                         WHERE Id = @id";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
-                    cmd.Parameters.AddWithValue("@owerId", dog.OwnerId);
+                    cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes);
-                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl);
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? "NA" );
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? "NA");
+                    cmd.Parameters.AddWithValue("@id", dog.Id);
 
                     cmd.ExecuteNonQuery();
                 }

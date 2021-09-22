@@ -26,16 +26,17 @@ namespace DogGo.Controllers
             List<Dog> dogs = _dogRepo.GetDogsByOwnerId(owner.Id);
             List<Walker> walkers = _walkerRepo.GetWalkersInNeighborhood(owner.NeighborhoodId);
 
+            if (owner == null || dogs == null)
+            {
+                return NotFound();
+            }
+
             ProfileViewModel vm = new ProfileViewModel()
             {
                 Owner = owner,
                 Dogs = dogs,
                 Walkers = walkers
             };
-            if (owner == null)
-            {
-                return NotFound();
-            }
 
             return View(vm);
         }
@@ -74,11 +75,18 @@ namespace DogGo.Controllers
         public ActionResult Edit(int id)
         {
             Owner owner = _ownerRepo.GetOwnerById(id);
+            List<Neighborhood> neighborhoods = _neighborhoodRepo.GetAll();
+            OwnerFormViewModel vm = new OwnerFormViewModel()
+            {
+                Owner = owner,
+                Neighborhoods = neighborhoods
+            };
+
             if (owner == null)
             {
                 return NotFound();
             }
-            return View(owner);
+            return View(vm);
         }
 
         // POST: OwnerController/Edit/5
