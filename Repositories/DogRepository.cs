@@ -179,8 +179,8 @@ namespace DogGo.Repositories
                     cmd.Parameters.AddWithValue("@name", dog.Name);
                     cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? "NA");
-                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? "NA");
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? " ");
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? " ");
 
                     int id = (int)cmd.ExecuteScalar();
 
@@ -209,8 +209,8 @@ namespace DogGo.Repositories
                     cmd.Parameters.AddWithValue("@name", dog.Name);
                     cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
-                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? "NA" );
-                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? "NA");
+                    cmd.Parameters.AddWithValue("@notes", dog.Notes ?? " " );
+                    cmd.Parameters.AddWithValue("@imageUrl", dog.ImageUrl ?? " ");
                     cmd.Parameters.AddWithValue("@id", dog.Id);
 
                     cmd.ExecuteNonQuery();

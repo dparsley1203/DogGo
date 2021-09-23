@@ -49,7 +49,7 @@ namespace DogGo.Repositories
                                 Phone = reader.GetString(reader.GetOrdinal("Phone")),
                             });
                         }
-
+                        reader.Close();
                         return owners;
                     }
                 }
@@ -82,10 +82,12 @@ namespace DogGo.Repositories
                                 Phone = reader.GetString(reader.GetOrdinal("Phone")),
                             };
 
+                            reader.Close();
                             return owner;
                         }
                         else
                         {
+                            reader.Close();
                             return null;
                         }
                     }

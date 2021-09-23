@@ -115,7 +115,7 @@ namespace DogGo.Repositories
                     else
                     {
                         reader.Close();
-                        return walker;
+                        return null;  //previous had return walker
                     }
 
                 }
